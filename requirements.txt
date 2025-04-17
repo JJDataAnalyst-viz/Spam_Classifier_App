@@ -1,0 +1,4 @@
+numpy
+scipy
+gensim
+psycopg2-binary
