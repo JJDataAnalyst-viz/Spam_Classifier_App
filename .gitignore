@@ -1,1 +1,63 @@
-/venv
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual Environment
+venv/
+.venv/
+
+# Environment Variables
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Pytest / Coverage
+htmlcov/
+.coverage
+.cache
+.tox/
+nosetests.xml
+coverage.xml
+
+# MyPy / Pylint / Bandit
+.mypy_cache/
+.pytest_cache/
+.pyre/
+
+
+# Apache Airflow
+airflow.db
+airflow.cfg
+airflow-webserver.pid
+logs/
+__pycache__/
+dags/__pycache__/
+plugins/__pycache__/
+
+
+# IDE
+.idea/
+*.iml
+
+# System
+Thumbs.db
