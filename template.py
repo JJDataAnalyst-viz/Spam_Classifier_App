@@ -5,12 +5,15 @@
 import os 
 from pathlib import Path
 from typing import List
+from src.nlp import logger
 
+logger.info('Hello')
 project_name = "nlp"
 
 list_of_files =  [".github/workflows/.gitkeep",
                     f"src/{project_name}/__init__.py",
                     f"src/{project_name}/components/__init__.py",
+                    f"src/{project_name}/components/data_ingestion.py",
                     f"src/{project_name}/utils/__init__.py",
                     f"src/{project_name}/utils/common.py",
                     f"src/{project_name}/config/__init__.py",

@@ -26,6 +26,7 @@ venv/
 
 # Logs
 *.log
+/log-files
 
 # Docker
 *.pid
