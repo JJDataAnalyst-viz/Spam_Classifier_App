@@ -1,15 +1,13 @@
 import psycopg2
 import os
 import dotenv
+import pandas as pd
+from src.nlp.utils.common import connect_to_database
+
 dotenv.load_dotenv('.env')
 
-conn = psycopg2.connect(
-     database = os.getenv('PYDB'),
-        host = os.getenv('PYHOST'),
-        password = os.getenv('PYPASSWORD'),
-        user = os.getenv('PYUSERNAME'),
-        port = os.getenv('PYPORT'))
+def ingest_data():
+    return pd.DataFrame(connect_to_database('Select input_text,output_text FROM NLP',False,False),columns=['Text','Output'])
 
-cursor = conn.cursor()
-
-conn.close()
+if __name__ == "__main__":
+    ingest_data()
