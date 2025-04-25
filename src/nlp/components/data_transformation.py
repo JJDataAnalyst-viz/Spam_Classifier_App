@@ -8,12 +8,18 @@ from sklearn.model_selection import train_test_split
 nltk.download('wordnet',quiet=True)
 nltk.download('stopwords',quiet=True)
 from sklearn.preprocessing import LabelEncoder
+import joblib
+import pandas as pd
+import yaml
+from src.nlp.utils.common import safe_to_joblib
+with open('params.yaml','r') as f:
+    params = yaml.safe_load(f)['SPLIT_DATA']
 
-def transform_data():
+
+def transform_data(df : pd.DataFrame ):
     corpus = []
     encoder = LabelEncoder()
     lemma_ = WordNetLemmatizer()
-    df = ingest_data()
     X = df.iloc[:,0]
     y = df.iloc[:,-1]
     y_encoded = encoder.fit_transform(y)
@@ -24,12 +30,13 @@ def transform_data():
         review = [lemma_.lemmatize(word) for word in review if word not in punctuation and word not in stopwords.words('english')]
         review = " ".join(review)
         corpus.append(review)
-
-    X_train,X_test,y_train,y_test = train_test_split(corpus,y_encoded,test_size=0.3)
+    # joblib.dump(encoder,'models/encoder.pkl')
+    safe_to_joblib(encoder,'models/encoder.pkl')
+   
+    X_train,X_test,y_train,y_test = train_test_split(corpus,y_encoded,test_size=params['TEST_SIZE'])
     return  X_train,X_test,y_train,y_test
 
 
 if __name__ == "__main__":
     X_train,X_test,y_train,y_test = transform_data()
     
-    print(y_train)

@@ -1,6 +1,10 @@
 import psycopg2
 import os
 import dotenv
+import yaml
+import joblib
+from typing import List
+from src.nlp.constants import PARAMS_YAML,CONFIG_YAML
 dotenv.load_dotenv('.env')
 
 
@@ -26,3 +30,14 @@ def connect_to_database(query : str,insert : bool = False,fetchone: bool = True)
 
     conn.close()
 
+
+
+def load_yaml_file(extension: List):
+    with open(PARAMS_YAML,'r') as file:
+        params = yaml.safe_load(file)[extension]
+
+    return params
+
+
+def safe_to_joblib(name,file_path):
+    joblib.dump(name,file_path)

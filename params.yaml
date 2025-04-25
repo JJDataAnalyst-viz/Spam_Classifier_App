@@ -1,0 +1,9 @@
+MODEL_PARAMS:
+  TFIDF_RANGE : [1,6]
+  ETA : 0.3
+  MAX_DEPTH : 6
+
+
+
+SPLIT_DATA:
+  TEST_SIZE: 0.3
