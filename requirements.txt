@@ -6,3 +6,6 @@ nltk
 xgboost
 streamlit
 pyyaml
+joblib
+scikit-learn
+apache-airflow-providers-postgres

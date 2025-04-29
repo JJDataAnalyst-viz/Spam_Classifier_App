@@ -11,12 +11,16 @@ from sklearn.preprocessing import LabelEncoder
 import joblib
 import pandas as pd
 import yaml
+import os
 from src.nlp.utils.common import safe_to_joblib
-with open('params.yaml','r') as f:
+
+
+with open('config/params.yaml', 'r') as f:
     params = yaml.safe_load(f)['SPLIT_DATA']
 
-
+df = ingest_data()
 def transform_data(df : pd.DataFrame ):
+    
     corpus = []
     encoder = LabelEncoder()
     lemma_ = WordNetLemmatizer()
@@ -30,7 +34,7 @@ def transform_data(df : pd.DataFrame ):
         review = [lemma_.lemmatize(word) for word in review if word not in punctuation and word not in stopwords.words('english')]
         review = " ".join(review)
         corpus.append(review)
-    # joblib.dump(encoder,'models/encoder.pkl')
+  
     safe_to_joblib(encoder,'models/encoder.pkl')
    
     X_train,X_test,y_train,y_test = train_test_split(corpus,y_encoded,test_size=params['TEST_SIZE'])
